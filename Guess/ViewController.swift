@@ -9,10 +9,25 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private let controller: GameController
 
+     required init(coder aDecoder: NSCoder) {
+        controller = GameController()
+        super.init(coder: aDecoder)!
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let level1 = Level(levelNumber: 1)
+        // Add a view to hold all game components
+        let gameView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenWidth))
+        self.view.addSubview(gameView)
+        
+        controller.level = level1
+        controller.gameView = gameView
+        controller.dealRandomAnagram()
     }
 
     override func didReceiveMemoryWarning() {
