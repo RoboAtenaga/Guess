@@ -24,6 +24,10 @@ class ViewController: UIViewController {
         // Add a view to hold all game components
         let gameView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenWidth))
         self.view.addSubview(gameView)
+        // Add a view for all hud and controls
+        let hudView = HUDView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
+        self.view.addSubview(hudView)
+        controller.hud = hudView
         
         controller.level = level1
         controller.gameView = gameView

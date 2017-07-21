@@ -11,9 +11,15 @@ import UIKit
 
 class GameController {
     var gameView: UIView!
+    var hud: HUDView!
     var level: Level!
     var tiles = [TileView]()
     var slots = [SlotView]()
+    //stopwatch variables
+    private var secondsLeft: Int = 0
+    private var timer: Timer?
+    // to store game data
+    var data = GameData()
     
     init() {
     }
@@ -72,6 +78,9 @@ class GameController {
                 tiles.append(tile)
             }
         }
+        
+        //start timer
+        self.startStopwatch()
     }
     
     // Place tiles on slots
@@ -80,7 +89,7 @@ class GameController {
         slotView.isMatches = true
         tileView.isMatches = true
         
-        // diable user interaction so player can't move the tile anymore
+        // disable user interaction so player can't move the tile anymore
         tileView.isUserInteractionEnabled = false
         
         // create an animation that will last 35 hundredths os seconds
@@ -92,6 +101,44 @@ class GameController {
             slotView.isHidden = true
         }
     }
+    
+    // Start the stopwatch
+    func startStopwatch() {
+        //initialize the timer HUD
+        secondsLeft = level.timeToSolve
+        hud.stopwatch.setSeconds(seconds: secondsLeft)
+        
+        //schedule a new timer
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GameController.tick(timer:)), userInfo: nil, repeats: true)
+    }
+    
+    // Stop stopwatch
+    func stopStopwatch() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    // Tick function to countdown
+    // the @objc is to make the function usable since Timer is ann objective-c class
+    @objc func tick(timer: Timer) {
+        secondsLeft -= 1
+        hud.stopwatch.setSeconds(seconds: secondsLeft)
+        if secondsLeft == 0 {
+            self.stopStopwatch()
+        }
+    }
+    
+    // Check if all tiles have been correctly matched within the given time
+    func checkForCompletion() {
+        for slotView in slots {
+            //no success, bail out
+            if !slotView.isMatches {
+                return
+            }
+        }
+        self.stopStopwatch()
+        print("Game Over!")
+    }
 }
 
 // Add an extension to conform to TileDragDelegateProtocol
@@ -100,6 +147,7 @@ extension GameController:TileDragDelegateProtocol {
     func tileViewDragged(tileView: TileView, didDragToPoint point: CGPoint) {
         var slotView: SlotView?
         for sv in slots {
+            // check for empty slots
             if sv.frame.contains(point) && !sv.isMatches {
                 slotView = sv
                 break
@@ -112,10 +160,11 @@ extension GameController:TileDragDelegateProtocol {
             if slotView.letter == tileView.letter {
                 // Success
                 self.placeTile(tileView: tileView, slotView: slotView)
-                
-                //more stuff to do on success here
-                
-                print("Check if the player has completed the phrase")
+                // award points
+                data.points += level.pointsPerTile
+                hud.scoreLabel.value = data.points
+                //check for finished game
+                self.checkForCompletion()
             } else {
                 
                 // Failure
@@ -124,8 +173,9 @@ extension GameController:TileDragDelegateProtocol {
                     tileView.center = CGPoint(x: tileView.center.x + CGFloat(randomNumber(minX:0, maxX:40)-20),
                                               y: tileView.center.y + CGFloat(randomNumber(minX:20, maxX:30)))
                 }, completion: nil)
-                
-                //more stuff to do on failure here
+                // deduct points
+                data.points -= level.pointsPerTile/2
+                hud.scoreLabel.value = data.points
             }
         }
     }

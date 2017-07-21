@@ -40,6 +40,10 @@
 		5C7AB2BF1F1E0DE600B6C575 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7AB2BE1F1E0DE600B6C575 /* GameController.swift */; };
 		5C7AB2C11F1E142A00B6C575 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7AB2C01F1E142A00B6C575 /* TileView.swift */; };
 		5C7AB2C31F1E5B7100B6C575 /* SlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7AB2C21F1E5B7000B6C575 /* SlotView.swift */; };
+		5CB1806B1F204C700009239A /* StopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB1806A1F204C700009239A /* StopWatchView.swift */; };
+		5CB1806D1F2053240009239A /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB1806C1F2053240009239A /* HUDView.swift */; };
+		5CD526071F21EF3B009A413B /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD526061F21EF3B009A413B /* GameData.swift */; };
+		5CD526091F21F0A5009A413B /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD526081F21F0A5009A413B /* ScoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +103,10 @@
 		5C7AB2BE1F1E0DE600B6C575 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		5C7AB2C01F1E142A00B6C575 /* TileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		5C7AB2C21F1E5B7000B6C575 /* SlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotView.swift; sourceTree = "<group>"; };
+		5CB1806A1F204C700009239A /* StopWatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchView.swift; sourceTree = "<group>"; };
+		5CB1806C1F2053240009239A /* HUDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		5CD526061F21EF3B009A413B /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		5CD526081F21F0A5009A413B /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				5C7AB2BC1F1E0B6A00B6C575 /* Level.swift */,
+				5CD526061F21EF3B009A413B /* GameData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -272,6 +281,9 @@
 			children = (
 				5C7AB2C01F1E142A00B6C575 /* TileView.swift */,
 				5C7AB2C21F1E5B7000B6C575 /* SlotView.swift */,
+				5CB1806A1F204C700009239A /* StopWatchView.swift */,
+				5CB1806C1F2053240009239A /* HUDView.swift */,
+				5CD526081F21F0A5009A413B /* ScoreView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -444,10 +456,14 @@
 				5C7AB25E1F1DCC2000B6C575 /* Guess.xcdatamodeld in Sources */,
 				5C7AB2C11F1E142A00B6C575 /* TileView.swift in Sources */,
 				5C7AB2BF1F1E0DE600B6C575 /* GameController.swift in Sources */,
+				5CB1806B1F204C700009239A /* StopWatchView.swift in Sources */,
 				5C7AB2B71F1E04FE00B6C575 /* Config.swift in Sources */,
+				5CD526091F21F0A5009A413B /* ScoreView.swift in Sources */,
 				5C7AB2581F1DCC2000B6C575 /* ViewController.swift in Sources */,
 				5C7AB2BD1F1E0B6A00B6C575 /* Level.swift in Sources */,
 				5C7AB2C31F1E5B7100B6C575 /* SlotView.swift in Sources */,
+				5CB1806D1F2053240009239A /* HUDView.swift in Sources */,
+				5CD526071F21EF3B009A413B /* GameData.swift in Sources */,
 				5C7AB2561F1DCC2000B6C575 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -701,6 +717,7 @@
 				5C7AB27F1F1DCC2000B6C575 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5C7AB2801F1DCC2000B6C575 /* Build configuration list for PBXNativeTarget "GuessTests" */ = {
 			isa = XCConfigurationList;
@@ -709,6 +726,7 @@
 				5C7AB2821F1DCC2000B6C575 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5C7AB2831F1DCC2000B6C575 /* Build configuration list for PBXNativeTarget "GuessUITests" */ = {
 			isa = XCConfigurationList;
@@ -717,6 +735,7 @@
 				5C7AB2851F1DCC2000B6C575 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
